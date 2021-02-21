@@ -1,26 +1,20 @@
 void main() {
 
-  // Implementando uma lojinha
+  double num1 = 10.0;
+  double num2 = 20.0;
 
-  String nome = "Lojinha do Dart";
-  int bananas;
-  double preco = 10.50;
-  bool aindatem = true; // true - verdadeiro / false - falso
+  // double result = num1 + num2;
+  // double result = num1 * num2;
+  double result = (num1 * num2) - 30.0;
 
-  bananas = 10;
+  print(result);
 
-  print("O nome da minha lojinha é: " + nome);
-  print("A $nome tem $bananas bananas");
+  // num1 = num1 + 15;
 
-  dynamic teste = 1;
-  print(teste); 
-  teste = "hahaha";
-  print(teste);
+  num1 += 15;
 
+  num1++;
 
-  // var teste = 1;
-  // print(teste); 
-  // teste = "hahaha";
-  // print(teste);
+  print(num1);
 
 }
