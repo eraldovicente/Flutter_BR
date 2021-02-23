@@ -10,7 +10,18 @@ const request =
 void main() async {
   print(await getData());
 
-  runApp(MaterialApp(home: Home()));
+  runApp(MaterialApp(
+      home: Home(),
+      theme: ThemeData(
+          hintColor: Colors.white,
+          inputDecorationTheme: InputDecorationTheme(
+            border:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+          ))));
 }
 
 Future<Map> getData() async {
@@ -24,6 +35,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  double dolar;
+  double euro;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +65,53 @@ class _HomeState extends State<Home> {
                     style: TextStyle(color: Colors.amber, fontSize: 25.0),
                   ));
                 } else {
-                  return Container(color: Colors.green);
+                  dolar = snapshot.data["results"]["currencies"]["USD"]["buy"];
+                  euro = snapshot.data["results"]["currencies"]["EUR"]["buy"];
+
+                  return SingleChildScrollView(
+                  padding: EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Icon(Icons.monetization_on,
+                          size: 150.0, color: Colors.amber),
+                      TextField(
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).hintColor)),
+                            labelText: "Reais",
+                            labelStyle: TextStyle(color: Colors.amber),
+                            border: OutlineInputBorder(),
+                            prefixText: "R\$ "),
+                        style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                      ),
+                      Divider(),
+                      TextField(
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).hintColor)),
+                            labelText: "Dolares",
+                            labelStyle: TextStyle(color: Colors.amber),
+                            border: OutlineInputBorder(),
+                            prefixText: "US\$ "),
+                        style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                      ),
+                      Divider(),
+                      TextField(
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).hintColor)),
+                            labelText: "Euros",
+                            labelStyle: TextStyle(color: Colors.amber),
+                            border: OutlineInputBorder(),
+                            prefixText: "€\$ "),
+                        style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                      ),
+                    ],
+                  ));
                 }
             }
           }),
