@@ -4,6 +4,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'gif_page.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -117,6 +119,11 @@ class _HomePageState extends State<HomePage> {
                   snapshot.data['data'][index]['images']['fixed_height']['url'],
                   height: 300.0,
                   fit: BoxFit.cover),
+                  onTap: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => GifPage(snapshot.data['data'][index]))
+                    );
+                  },
             );
           } else {
             return Container(
