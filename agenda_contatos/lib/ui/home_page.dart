@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:agenda_contatos/helpers/contact_helper.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,7 +8,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   ContactHelper helper = ContactHelper();
 
   List<Contact> contacts = List();
@@ -16,8 +16,16 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
+    Contact c = Contact();
+    c.name = "Eraldo Vicente";
+    c.email = "correio@correio.com";
+    c.phone = "9999-9999";
+    c.img = "imgtest";
+
+    helper.saveContact(c);
+
     helper.getAllContacts().then((list) {
-      setState(() {        
+      setState(() {
         contacts = list;
       });
     });
@@ -26,24 +34,60 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Contatos"),
-        backgroundColor: Colors.red,
-        centerTitle: true,        
-      ),
-      backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-        backgroundColor: Colors.red,
-      ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(10.0),
-        itemCount: contacts.length,
-        itemBuilder: (context, index) {
+        appBar: AppBar(
+          title: Text("Contatos"),
+          backgroundColor: Colors.red,
+          centerTitle: true,
+        ),
+        backgroundColor: Colors.white,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add),
+          backgroundColor: Colors.red,
+        ),
+        body: ListView.builder(
+          padding: EdgeInsets.all(10.0),
+          itemCount: contacts.length,
+          itemBuilder: (context, index) {
+            return _contactCard(context, index);
+          },
+        ));
+  }
 
-        },
-      )
-    );
+  Widget _contactCard(BuildContext context, int index) {
+    return GestureDetector(
+        child: Card(
+            child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  // alignment: WrapAlignment.end,
+                  children: [
+                  Container(
+                    width: 40.0,
+                    height: 40.0,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: contacts[index].img != null
+                                ? FileImage(File(contacts[index].img))
+                                : AssetImage("images/person.png"))),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(contacts[index].name ?? "",
+                              style: TextStyle(
+                                  fontSize: 22.0, fontWeight: FontWeight.bold)),
+                          Text(contacts[index].email ?? "",
+                              style: TextStyle(
+                                  fontSize: 18.0)),
+                          Text(contacts[index].phone ?? "",
+                              style: TextStyle(
+                                  fontSize: 18.0)),
+                        ],
+                      ))
+                ]))));
   }
 }
