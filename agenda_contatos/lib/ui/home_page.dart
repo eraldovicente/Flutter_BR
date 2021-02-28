@@ -60,7 +60,6 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Row(
-                  // alignment: WrapAlignment.end,
                   children: [
                   Container(
                     width: 40.0,
