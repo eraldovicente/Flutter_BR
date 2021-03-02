@@ -72,11 +72,13 @@ class _ContactPageState extends State<ContactPage> {
                       image: DecorationImage(
                           image: _editedContact.img != null
                               ? FileImage(File(_editedContact.img))
-                              : AssetImage("images/person.png"))),
+                              : AssetImage("images/person.png"),
+                          fit: BoxFit.cover)),
                 ),
                 onTap: () {
-                  ImagePicker.pickImage(source: ImageSource.camera).then((file){
-                    if(file == null) return; 
+                  ImagePicker.pickImage(source: ImageSource.camera)
+                      .then((file) {
+                    if (file == null) return;
                     setState(() {
                       _editedContact.img = file.path;
                     });
@@ -119,33 +121,31 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   Future<bool> _requestPop() {
-      if(_userEdited) {
-        showDialog(context: context,
+    if (_userEdited) {
+      showDialog(
+          context: context,
           builder: (context) {
             return AlertDialog(
               title: Text("Descartar Alterações?"),
               content: Text("Se sair as alterações serão perdidas."),
               actions: [
                 FlatButton(
-                  child: Text("Cancelar"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }
-                ),
+                    child: Text("Cancelar"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
                 FlatButton(
-                  child: Text("Ok"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                  }
-                )
+                    child: Text("Ok"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    })
               ],
             );
-          }
-        );
-        return Future.value(true);
-      } else {
-        return Future.value(true);
-      }
+          });
+      return Future.value(true);
+    } else {
+      return Future.value(true);
+    }
   }
 }
