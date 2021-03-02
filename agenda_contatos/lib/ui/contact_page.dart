@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-
+import 'package:image_picker/image_picker.dart';
 import 'package:agenda_contatos/helpers/contact_helper.dart';
 
 class ContactPage extends StatefulWidget {
@@ -74,6 +74,14 @@ class _ContactPageState extends State<ContactPage> {
                               ? FileImage(File(_editedContact.img))
                               : AssetImage("images/person.png"))),
                 ),
+                onTap: () {
+                  ImagePicker.pickImage(source: ImageSource.camera).then((file){
+                    if(file == null) return; 
+                    setState(() {
+                      _editedContact.img = file.path;
+                    });
+                  });
+                },
               ),
               TextField(
                   controller: _nameController,
