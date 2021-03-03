@@ -5,7 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 void main() {
   
   runApp(MyApp());
-  Firestore.instance.collection("col").document("doc").setData({"texto":"Eraldo"});
+  Firestore.instance.collection("mensagens").document('vVP0G03IHIxoYhFLkyiO').collection('arquivos').document().setData({
+    'arqname': 'foto.png'
+  });
 
 }
 
