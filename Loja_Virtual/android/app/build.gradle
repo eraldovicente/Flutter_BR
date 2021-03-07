@@ -34,6 +34,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "br.com.ecommerceApp.Loja_Virtual"
+        multiDexEnabled true
         minSdkVersion 16
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
@@ -53,4 +54,4 @@ flutter {
     source '../..'
 }
 
-classpath 'com.google.gms:google-services:4.3.0'
+apply plugin: 'com.google.gms.google-services'
