@@ -12,9 +12,7 @@ class HomeScreen extends StatelessWidget {
       controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
       children: [
-        HomeTab(
-          
-        )
+        HomeTab()
       ]
     );
   }
