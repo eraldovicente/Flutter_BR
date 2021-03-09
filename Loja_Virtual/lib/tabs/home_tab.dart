@@ -6,7 +6,6 @@ import 'package:transparent_image/transparent_image.dart';
 class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     Widget _buildBodyBack() => Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
@@ -35,7 +34,7 @@ class HomeTab extends StatelessWidget {
                   .orderBy('pos')
                   .getDocuments(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData) {
+                if (!snapshot.hasData)
                   return SliverToBoxAdapter(
                     child: Container(
                       height: 200.0,
@@ -45,7 +44,7 @@ class HomeTab extends StatelessWidget {
                               AlwaysStoppedAnimation<Color>(Colors.white)),
                     ),
                   );
-                } else {
+                else
                   return SliverStaggeredGrid.count(
                       crossAxisCount: 2,
                       mainAxisSpacing: 1.0,
@@ -61,7 +60,6 @@ class HomeTab extends StatelessWidget {
                           fit: BoxFit.cover,
                         );
                       }).toList());
-                }
               },
             )
           ],
