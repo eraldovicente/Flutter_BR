@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:Loja_Virtual/datas/product_data.dart';
 import 'package:Loja_Virtual/tiles/product_tile.dart';
-import 'package:flutter/material.dart';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoryScreen extends StatelessWidget {
   final DocumentSnapshot snapshot;
@@ -29,7 +29,7 @@ class CategoryScreen extends StatelessWidget {
             future: Firestore.instance
                 .collection("products")
                 .document(snapshot.documentID)
-                .collection("itmes")
+                .collection("items")
                 .getDocuments(),
             builder: (context, snapshot) {
               if (!snapshot.hasData)

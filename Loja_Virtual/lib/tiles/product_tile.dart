@@ -1,5 +1,5 @@
-import 'package:Loja_Virtual/datas/product_data.dart';
 import 'package:flutter/material.dart';
+import 'package:Loja_Virtual/datas/product_data.dart';
 
 class ProductTile extends StatelessWidget {
   final String type;
@@ -17,7 +17,7 @@ class ProductTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AspectRatio(
-                aspectRatio: 0.0,
+                aspectRatio: 0.9,
                 child: Image.network(
                   product.images[0],
                   fit: BoxFit.cover,
