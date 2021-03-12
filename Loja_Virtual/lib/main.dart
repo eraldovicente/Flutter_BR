@@ -1,4 +1,5 @@
 import 'package:Loja_Virtual/screens/login_screen.dart';
+import 'package:Loja_Virtual/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:Loja_Virtual/screens/home_screen.dart';
