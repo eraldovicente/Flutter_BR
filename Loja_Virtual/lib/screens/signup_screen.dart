@@ -8,7 +8,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  
+
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
@@ -20,6 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Text("Criar Conta"),
           centerTitle: true,
@@ -28,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           builder: (context, child, model) {
             if (model.isLoading)
               return Center(child: CircularProgressIndicator());
-            else
+            
               return Form(
                 key: _formKey,
                 child: ListView(
@@ -115,7 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _onFail() {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text("Falha ao crriar o usuário!"),
+      content: Text("Falha ao criar o usuário!"),
       backgroundColor: Colors.redAccent,
       duration: Duration(seconds: 2),
     ));
